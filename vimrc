@@ -1,11 +1,13 @@
-" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good choice.
-"              If you're a more advanced user, building your own .vimrc based
-"              on this file is still a good idea.
+" Pathogen package manager
+execute pathogen#infect()
+
+" Gruvbox color scheme
+autocmd vimenter * colorscheme gruvbox
+set background=dark " Dark theme
+set termguicolors 
  
 "------------------------------------------------------------
-" Features {{{1
+" Features {{{
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -20,10 +22,11 @@ set nocompatible
 filetype indent plugin on
  
 " Enable syntax highlighting
-syntax on
-syntax enable " enable syntax processing 
+if !exists("g:syntax_on")
+    syntax enable
+endif
 "------------------------------------------------------------
-" Must have options {{{1
+" Must have options {{{
 "
 " These are highly recommended options.
  
@@ -111,7 +114,6 @@ set t_vb=
 set mouse=a
  
 " Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
 set cmdheight=2
  
 " Display line numbers on the left
@@ -120,10 +122,9 @@ set number
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
  
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
  
 set cursorline " highlight current line 
+set cursorlineopt=number
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -142,7 +143,7 @@ set tabstop=4
  
  
 "------------------------------------------------------------
-" Mappings {{{1
+" Mappings 
 "
 " Useful mappings
  
@@ -154,15 +155,6 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
-" Turn off search highlight with spacebar
-nnoremap <leader><space> :nohlsearch<CR>
+" Unsets last search pattern register by hitting return
+nnoremap <CR> :noh<CR><CR>
 "------------------------------------------------------------
-" Personal
-set termguicolors   " enables true color support
-
-" Pathogen package manager
-execute pathogen#infect() 
-
-autocmd vimenter * colorscheme gruvbox  " Gruvbox color scheme
-
-set background=dark " Dark theme
