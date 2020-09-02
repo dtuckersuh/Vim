@@ -52,8 +52,6 @@ endif
 "------------------------------------------------------------
 " Must have options {{{
 "
-" These are highly recommended options.
- 
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple
 " tab pages to edit multiple files, but it is still best to enable an option to
