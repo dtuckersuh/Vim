@@ -5,7 +5,6 @@ execute pathogen#infect()
 autocmd vimenter * colorscheme gruvbox
 set background=dark " Dark theme
 set termguicolors 
-<<<<<<< HEAD
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -29,10 +28,8 @@ filetype plugin indent on    " required
 " auto-approve removal
 
 ""------------------------------------------------------------
-=======
  
 "------------------------------------------------------------
->>>>>>> 1dcbad29ad988d2212c2f6246a93f47f25b1ba59
 " Features {{{
 "
 " These options and commands enable some very useful features in Vim, that
@@ -51,9 +48,7 @@ filetype indent plugin on
 if !exists("g:syntax_on")
     syntax enable
 endif
-<<<<<<< HEAD
  
-=======
 "------------------------------------------------------------
 " Must have options {{{
 "
@@ -64,7 +59,6 @@ endif
 " tab pages to edit multiple files, but it is still best to enable an option to
 " allow easier switching between files.
 "
->>>>>>> 1dcbad29ad988d2212c2f6246a93f47f25b1ba59
 " One such option is the 'hidden' option, which allows you to re-use the same
 " window and switch from an unsaved buffer without saving it first. Also allows
 " you to keep an undo history for multiple files when re-using the same window
@@ -155,10 +149,7 @@ set notimeout ttimeout ttimeoutlen=200
  
 set cursorline " highlight current line 
 set cursorlineopt=number
-<<<<<<< HEAD
 
-=======
->>>>>>> 1dcbad29ad988d2212c2f6246a93f47f25b1ba59
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -175,7 +166,6 @@ set expandtab
 "set shiftwidth=4
 set tabstop=4
  
- 
 "------------------------------------------------------------
 " Mappings 
 "
@@ -191,12 +181,9 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " Unsets last search pattern register by hitting return
 nnoremap <CR> :noh<CR><CR>
-<<<<<<< HEAD
 " Remap Pane Navigation
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
-=======
->>>>>>> 1dcbad29ad988d2212c2f6246a93f47f25b1ba59
 "------------------------------------------------------------
