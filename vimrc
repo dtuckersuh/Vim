@@ -1,20 +1,21 @@
-" Pathogen package manager
-execute pathogen#infect()
-
 " Gruvbox color scheme
 autocmd vimenter * colorscheme gruvbox
 set background=dark " Dark theme
 set termguicolors 
 
+" Pathogen package manager
+execute pathogen#infect()
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')"
+ "call vundle#begin('~/some/path/here')"
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
+Plugin 'dense-analysis/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -27,6 +28,12 @@ filetype plugin indent on    " required
 " " :PluginClean      - confirms removal of unused plugins; append `!` to
 " auto-approve removal
 
+" vim-plug
+call plug#begin()
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'   }
+
+call plug#end()
 ""------------------------------------------------------------
  
 "------------------------------------------------------------
@@ -179,9 +186,39 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " Unsets last search pattern register by hitting return
 nnoremap <CR> :noh<CR><CR>
+
 " Remap Pane Navigation
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
+
+" Ale: Move cursor to next error with Ctrl-e
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
 "------------------------------------------------------------
+" Disable text wrapping
+set nowrap
+
+" Ale: Display number of errors and warning
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+        \   '%d⨉ %d⚠ ',
+        \   all_non_errors,
+        \   all_errors
+        \)
+    endfunction
+
+    set statusline+=%=
+    set statusline+=\ %{LinterStatus()}
+
+" Ale: Change error symbol to dots
+let g:gruvbox_guisp_fallback = 'bg'
+" let g:ale_sign_error = '●'
+" let g:ale_sign_warning = '.'
+
+" Markdown Preview
+" Vim refreshes markdown when buffer is save or insert mode is left
+let g:mkdp_refresh_slow = 1
