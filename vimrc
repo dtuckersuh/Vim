@@ -16,6 +16,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'dense-analysis/ale'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -169,7 +170,8 @@ set expandtab
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
 "set shiftwidth=4
-set tabstop=4
+set tabstop=8
+set smartindent
  
 "------------------------------------------------------------
 " Mappings 
@@ -197,8 +199,11 @@ nnoremap <C-H> <C-W>h
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
 "------------------------------------------------------------
 " Disable text wrapping
-set nowrap
-
+"set nowrap
+set textwidth=80
+" Allows for natural movement across wrapped lines
+noremap j gj
+noremap k gk
 " Ale: Display number of errors and warning
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
