@@ -14,9 +14,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'dense-analysis/ale'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -195,34 +194,6 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
-" Ale: Move cursor to next error with Ctrl-e
-nmap <silent> <C-e> <Plug>(ale_next_wrap)
-"------------------------------------------------------------
-" Disable text wrapping
-"set nowrap
-set textwidth=80
-" Allows for natural movement across wrapped lines
-noremap j gj
-noremap k gk
-" Ale: Display number of errors and warning
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? 'OK' : printf(
-        \   '%d⨉ %d⚠ ',
-        \   all_non_errors,
-        \   all_errors
-        \)
-    endfunction
-
-    set statusline+=%=
-    set statusline+=\ %{LinterStatus()}
-
-" Ale: Change error symbol to dots
-let g:gruvbox_guisp_fallback = 'bg'
-" let g:ale_sign_error = '●'
-" let g:ale_sign_warning = '.'
 
 " Markdown Preview
 " Vim refreshes markdown when buffer is save or insert mode is left
